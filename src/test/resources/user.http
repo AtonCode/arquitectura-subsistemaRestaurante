@@ -1,0 +1,11 @@
+POST http://10.0.1.108:8080/jakartaee-hello-world/rest/user/create
+Content-Type: application/json
+
+{
+    "name": "Aton Code",
+    "email": "hello@atoncode.me",
+    "password": "123456"
+}
+
+###
+GET http://localhost:8080/jakartaee-hello-world/rest/user/login/hello@atoncode.me/123456
