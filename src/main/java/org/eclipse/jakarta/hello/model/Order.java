@@ -1,6 +1,7 @@
 package org.eclipse.jakarta.hello.model;
 
 import jakarta.persistence.*;
+import jakarta.ws.rs.core.Response;
 
 @Entity
 @Table(name = "orders")
@@ -24,16 +25,27 @@ public class Order {
     @Column(name = "isApproved")
     private boolean isApproved;
 
+    @Column(name = "quantity")
+    private int quantity;
+
 
     public Order() {
     }
 
-    public Order(Long id, Long userId, Long productId, boolean isPaid, boolean isApproved) {
-        this.id = id;
+    public Order(Long userId, Long productId, boolean isPaid, boolean isApproved, int quantity) {
         this.userId = userId;
         this.productId = productId;
         this.isPaid = isPaid;
         this.isApproved = isApproved;
+        this.quantity = quantity;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public boolean isApproved() {

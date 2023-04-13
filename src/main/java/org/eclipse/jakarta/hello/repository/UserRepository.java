@@ -23,7 +23,18 @@ public class UserRepository {
         return em.find(User.class, id);
     }
 
-    public void update(User user) {em.merge(user);}
+    //Update a user by email
+    public User updateByEmail(String email) {
+        return em.createQuery("SELECT u FROM User u WHERE u.email = :email", User.class)
+                .setParameter("email", email)
+                .getSingleResult();
+    }
+
+    public User update(User user) {
+        em.merge(user);
+        return user;
+    }
+
 
     //Read a user by email and password
     public User readByEmailAndPassword(String email, String password) {

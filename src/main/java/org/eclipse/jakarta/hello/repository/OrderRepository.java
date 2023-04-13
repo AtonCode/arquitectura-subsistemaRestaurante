@@ -34,17 +34,12 @@ public class OrderRepository {
     }
 
 
-
-
-
-
     //Read all orders for a user
     public List<Order> readByUser(Long userId) {
         return em.createQuery("SELECT o FROM Order o WHERE o.userId = :userId", Order.class)
                 .setParameter("userId", userId)
                 .getResultList();
     }
-
 
     public List<Order> readPayByUser(Long id) {
         return em.createQuery("SELECT o FROM Order o WHERE o.userId = :id AND o.isPaid = true", Order.class)
@@ -59,4 +54,5 @@ public class OrderRepository {
                 .getResultList();
 
     }
+
 }

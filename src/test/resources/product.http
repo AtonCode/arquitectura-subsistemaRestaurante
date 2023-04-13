@@ -1,11 +1,11 @@
-POST http://localhost:8080/jakartaee-hello-world/rest/product/create
+POST http://10.0.1.108:8080/jakartaee-hello-world/rest/product/create
 Content-Type: application/json
 
 {
     "name": "iPhone 12",
     "description": "iPhone 12 128GB Black (Unlocked) A2401 (CDMA + GSM) 6.1 inch Display",
-    "price": "999.99",
-    "quantity": "1"
+    "price": 999.99,
+    "quantity": 1
 }
 ###
-GET http://localhost:8080/jakartaee-hello-world/rest/product/all
+GET http://10.0.1.108:8080/jakartaee-hello-world/rest/product/all

@@ -2,6 +2,8 @@ package org.eclipse.jakarta.hello.model;
 
 import jakarta.persistence.*;
 
+import java.math.BigInteger;
+
 @Entity // This tells Hibernate to make a table out of this class
 @Table(name = "products")
 public class Product {
@@ -17,15 +19,15 @@ public class Product {
     private String description;
 
     @Column(name = "price")
-    private String price;
+    private BigInteger price;
 
     @Column(name = "quantity")
-    private Long quantity;
+    private BigInteger quantity;
 
     public Product() {
     }
 
-    public Product(long id, String name, String description, String price, Long quantity) {
+    public Product(long id, String name, String description, BigInteger price, BigInteger quantity) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -57,19 +59,19 @@ public class Product {
         this.description = description;
     }
 
-    public String getPrice() {
+    public BigInteger getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(BigInteger price) {
         this.price = price;
     }
 
-    public Long getQuantity() {
+    public BigInteger getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(Long quantity) {
+    public void setQuantity(BigInteger quantity) {
         this.quantity = quantity;
     }
 }

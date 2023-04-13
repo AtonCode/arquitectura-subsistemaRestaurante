@@ -3,6 +3,7 @@ package org.eclipse.jakarta.hello.resources;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 import org.eclipse.jakarta.hello.model.Product;
 import org.eclipse.jakarta.hello.repository.ProductRepositoy;
 @Path("product")
@@ -16,48 +17,85 @@ public class ProductResource {
     // Create a new product using POST
     @POST
     @Path("create")
-    public Product createProduct(Product product) {
+    public Response createProduct(Product product) {
         // Create the product
         productRepositoy.create(product);
-        return product;
+        return Response
+                .status(200)
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+                .header("Access-Control-Allow-Credentials", "true")
+                .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
+                .header("Access-Control-Max-Age", "1209600")
+                .entity(productRepositoy.create(product)).build();
     }
 
 
     // Get all products
     @GET
     @Path("all")
-    public Product[] getAllProducts() {
+    public Response getAllProducts() {
+
         // Search for all products and return them
-        return productRepositoy.listAll()
-                .stream()
-                .toArray(Product[]::new);
+        return Response
+                .status(200)
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+                .header("Access-Control-Allow-Credentials", "true")
+                .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
+                .header("Access-Control-Max-Age", "1209600")
+                .entity(productRepositoy.listAll()
+                        .stream()
+                        .toArray(Product[]::new)).build();
 
     }
 
     // Get a product by id
     @GET
     @Path("{id}")
-    public Product getProductById(@PathParam("id") Long id) {
+    public Response getProductById(@PathParam("id") Long id) {
         // Search for the product and return it
-        return productRepositoy.read(id);
+        return  Response
+                .status(200)
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+                .header("Access-Control-Allow-Credentials", "true")
+                .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
+                .header("Access-Control-Max-Age", "1209600")
+                .entity(productRepositoy.read(id)).build();
     }
 
     // Update a product
     @PUT
-    @Path("update/{id}")
-    public Product updateProduct(@PathParam("id") Long id, Product product) {
+    @Path("update")
+    public Response updateProduct(Product product) {
         // Update the product
-        productRepositoy.update(product);
-        return product;
+        return  Response
+                .status(200)
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+                .header("Access-Control-Allow-Credentials", "true")
+                .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
+                .header("Access-Control-Max-Age", "1209600")
+                .entity(productRepositoy.update(product)).build();
     }
 
     // Delete a product
     @DELETE
     @Path("delete/{id}")
-    public void deleteProduct(@PathParam("id") Long id) {
+    public Response deleteProduct(@PathParam("id") Long id) {
         // Delete the product
-        productRepositoy.delete(id);
+        return Response
+                .status(200)
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+                .header("Access-Control-Allow-Credentials", "true")
+                .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
+                .header("Access-Control-Max-Age", "1209600")
+                .entity(productRepositoy.delete(id)).build();
     }
+
+
 
 
 

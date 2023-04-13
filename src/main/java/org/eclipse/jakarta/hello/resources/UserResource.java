@@ -29,20 +29,32 @@ public class UserResource {
     // Get all users
     @GET
     @Path("all")
-    public User[] getAllUsers() {
+    public Response getAllUsers() {
         // Search for all users and return them
-        return userRepositoy.listAll()
-                .stream()
-                .toArray(User[]::new);
+        return Response
+                    .status(200)
+                    .header("Access-Control-Allow-Origin", "*")
+                    .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+                    .header("Access-Control-Allow-Credentials", "true")
+                    .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
+                    .entity(userRepositoy.listAll()
+                            .stream()
+                            .toArray(User[]::new)).build();
 
     }
 
     // Get a user by id
     @GET
     @Path("{id}")
-    public User getUserById(@PathParam("id") Long id) {
+    public Response getUserById(@PathParam("id") Long id) {
         // Search for the user and return it
-        return userRepositoy.read(id);
+        return Response
+                .status(200)
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+                .header("Access-Control-Allow-Credentials", "true")
+                .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
+                .entity(userRepositoy.read(id)).build();
     }
 
     //Get a user by email and password
@@ -50,25 +62,45 @@ public class UserResource {
     @Path("login/{email}/{password}")
     public Response getUserByEmailAndPassword(@PathParam("email") String email, @PathParam("password") String password) {
         // Search for the user and return it
-        return Response.ok(userRepositoy.readByEmailAndPassword(email, password)).build();
+
+        return Response
+                .status(200)
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+                .header("Access-Control-Allow-Credentials", "true")
+                .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
+                .entity(userRepositoy.readByEmailAndPassword(email, password)).build();
     }
 
     // Update a user
     @PUT
-    @Path("update/{id}")
-    public User updateUser(@PathParam("id") Long id, User user) {
+    @Path("update/{email}")
+    public Response updateUser(@PathParam("email") String email) {
         // Update the user
-        userRepositoy.update(user);
-        return user;
+        return Response
+                .status(200)
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+                .header("Access-Control-Allow-Credentials", "true")
+                .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
+                .entity(userRepositoy.update(userRepositoy.updateByEmail(email))).build();
     }
 
 
     // Delete a user
     @DELETE
     @Path("delete/{id}")
-    public void deleteUser(@PathParam("id") Long id) {
+    public Response deleteUser(@PathParam("id") Long id) {
         // Delete the user
         userRepositoy.delete(id);
+
+        return Response
+                .status(200)
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+                .header("Access-Control-Allow-Credentials", "true")
+                .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
+                .entity("User deleted").build();
     }
 
 
