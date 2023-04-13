@@ -26,7 +26,7 @@
 
 <br>
 
-<div class="container py-5 h-100">
+<div *ngIf="!buyListEmpty()" class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-12 col-md-8 col-lg-6 col-xl-5">
         <div class="card bg-dark text-white" style="border-radius: 1rem;">
@@ -44,7 +44,7 @@
                         </div>
                         <p></p><p></p>
                         <div class="col-12 col-sm-4 pl-sm-0 ">
-                            <button class="btn btn-success btn-block " style="margin-left:20px" (click)="onBuy()"> Pagar </button>
+                            <button  class="btn btn-success btn-block " style="margin-left:20px" (click)="onBuy()"> Pagar </button>
                         </div><br>
                         <h4>TOTAL: ${{getTotal()}}</h4>
                         <br>

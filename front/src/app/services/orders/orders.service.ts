@@ -11,6 +11,6 @@ export class OrdersService {
   constructor(private http: HttpClient) { }
 
   addOrder (order: Order): Observable<any> {
-    return this.http.post("http://10.0.1.108:8080/jakartaee-hello-world/rest/order/create", order);
+    return this.http.post("http://10.0.1.108:8080/jakartaee-hello-world/rest/order/create", order, { responseType: 'text'});
   }
 }

@@ -31,19 +31,37 @@ export class BuyComponent implements OnInit {
   }
 
   onBuy(): void {
-
+    var errorS = false;
+    var amountBk: number[] = [];
+    var productBk: Product[] = [];
+    
     for(let i = 0; i < this.productsToBuy.length; i++) {
 
       let order: Order = {
-        userId: Number(this.loginService.getUserId),
+        userId: Number(this.loginService.getUserId()),
         productId: this.productsToBuy[i].id,
-        isPaid: true,
-        isApproved: true,
+        paid: true,
         quantity: this.amountToBuy[i]
       };
+
+      console.log(order);
   
       this.ordersService.addOrder(order).subscribe(
+        data => {
+          if(i == this.productsToBuy.length - 1) {
+            this.productsToBuy = productBk;
+            this.amountToBuy = amountBk;
+          }
+        },
         error => {
+          amountBk.push(this.amountToBuy[i]);
+          productBk.push(this.productsToBuy[i]);
+
+
+
+          errorS = true;
+          console.log(this.productsToBuy);
+          console.log(i);
           console.log(error);
           Swal.fire({
             icon: 'error',
@@ -54,8 +72,19 @@ export class BuyComponent implements OnInit {
         });
     }
 
-    this.amountToBuy = [];
-    this.productsToBuy = [];
+    if(!errorS) {
+      Swal.fire({
+        icon: 'success',
+        title: 'Compra realizada',
+        confirmButtonColor: '#50504f'
+      });
+
+    }
+
+  }
+
+  buyListEmpty(): boolean {
+    return this.productsToBuy.length == 0;
   }
 
   onAdd(prod: any): void {
