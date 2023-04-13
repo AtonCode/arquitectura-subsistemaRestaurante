@@ -87,6 +87,8 @@ Then you can access the application at http://localhost:8080/jakartaee-hello-wor
 
 You need to configure the datasource in the standalone.xml file as explained above.
 
+Download WildFly 27.0.0.Final from https://wildfly.org/downloads/
+
 Then you can deploy the application using the following command:
 ```
 sudo ./standalone.sh
