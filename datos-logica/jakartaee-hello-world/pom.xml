@@ -57,10 +57,11 @@
 		</dependency>
 
 
-	</dependencies>
+
+    </dependencies>
 
 	<build>
-		<finalName>jakartaee-hello-world</finalName>
+		<finalName>api-rest-server</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

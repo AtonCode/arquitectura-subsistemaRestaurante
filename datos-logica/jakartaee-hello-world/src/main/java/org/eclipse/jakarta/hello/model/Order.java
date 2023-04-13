@@ -18,42 +18,21 @@ public class Order {
     @Column(name = "productId")
     private Long productId;
 
-    @Column(name = "isPaid")
-    private boolean isPaid;
-
-    //isApproved
-    @Column(name = "isApproved")
-    private boolean isApproved;
-
     @Column(name = "quantity")
     private int quantity;
 
+    @Column(name = "paid")
+    private boolean paid;
 
     public Order() {
     }
 
-    public Order(Long userId, Long productId, boolean isPaid, boolean isApproved, int quantity) {
+    public Order(Long id, Long userId, Long productId, int quantity, boolean paid) {
+        this.id = id;
         this.userId = userId;
         this.productId = productId;
-        this.isPaid = isPaid;
-        this.isApproved = isApproved;
         this.quantity = quantity;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public boolean isApproved() {
-        return isApproved;
-    }
-
-    public void setApproved(boolean approved) {
-        isApproved = approved;
+        this.paid = paid;
     }
 
     public Long getId() {
@@ -80,11 +59,19 @@ public class Order {
         this.productId = productId;
     }
 
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
     public boolean isPaid() {
-        return isPaid;
+        return paid;
     }
 
     public void setPaid(boolean paid) {
-        isPaid = paid;
+        this.paid = paid;
     }
 }

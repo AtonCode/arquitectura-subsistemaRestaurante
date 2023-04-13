@@ -1,0 +1,16 @@
+POST http://10.0.1.108:8080/jakartaee-hello-world/rest/order/create
+Content-Type: application/json
+
+{
+  "userId": 0,
+  "productId": 2,
+  "quantity": 1,
+  "paid": false
+}
+
+###
+GET http://10.0.1.108:8080/jakartaee-hello-world/rest/order/all
+
+###
+GET http://10.0.1.108:8080/jakartaee-hello-world/rest/order/1
+
