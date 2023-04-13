@@ -15,7 +15,10 @@ public class OrderRepository {
     EntityManager em;
 
     //CRUD
-    public void create(Order order) {em.persist(order);}
+    public Order create(Order order) {
+        em.persist(order);
+        return order;
+    }
 
     public Order read(Long orderNo) {
         return em.find(Order.class, orderNo);

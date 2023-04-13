@@ -57,7 +57,8 @@
 		</dependency>
 
 
-	</dependencies>
+
+    </dependencies>
 
 	<build>
 		<finalName>jakartaee-hello-world</finalName>

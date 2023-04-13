@@ -21,17 +21,44 @@ public class OrderResource {
     @POST
     @Path("create")
     public Response createOrder(Order order) {
-        // Create the order
-        orderRepository.create(order);
 
-        return Response
-                .status(200)
+        // Create the order
+        if(orderRepository.create(order) != null){
+            System.out.println("Test 1 Order created");
+            return Response.ok()
+                    .header("Access-Control-Allow-Origin", "*")
+                    .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+                    .header("Access-Control-Allow-Credentials", "true")
+                    .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
+                    .header("Access-Control-Max-Age", "1209600")
+
+                    .entity(order).build();
+        }
+        else{
+            System.out.println("Test 2 Order not created");
+            return Response
+                    .status(400)
+                    .header("Access-Control-Allow-Origin", "*")
+                    .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+                    .header("Access-Control-Allow-Credentials", "true")
+                    .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
+                    .entity("Order not created").build();
+        }
+
+    }
+
+    @OPTIONS
+    @Path("{path : .*}")
+    public Response options() {
+        return Response.ok("")
                 .header("Access-Control-Allow-Origin", "*")
                 .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
                 .header("Access-Control-Allow-Credentials", "true")
                 .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
-                .entity(order).build();
+                .header("Access-Control-Max-Age", "1209600")
+                .build();
     }
+
 
     // Get all orders
     @GET
