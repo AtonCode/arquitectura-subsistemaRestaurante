@@ -61,7 +61,7 @@
     </dependencies>
 
 	<build>
-		<finalName>api-rest-server</finalName>
+		<finalName>jakartaee-hello-world</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
