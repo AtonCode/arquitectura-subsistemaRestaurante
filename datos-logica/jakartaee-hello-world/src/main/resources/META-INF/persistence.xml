@@ -7,8 +7,8 @@
     <persistence-unit name="myPersistenceUnit" transaction-type="JTA">
         <jta-data-source>java:/MySqlDS</jta-data-source>
 
-        <class>org.eclipse.jakarta.hello.model.User</class>
-        <class>org.eclipse.jakarta.hello.model.Product</class>
+        <class>org.eclipse.jakarta.hello.infraestructure.persistence.bd.user.mapper.User</class>
+        <class>org.eclipse.jakarta.hello.infraestructure.persistence.bd.product.mapper.Product</class>
 
         <properties>
 

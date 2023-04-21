@@ -1,11 +1,11 @@
-package org.eclipse.jakarta.hello.repository;
+package org.eclipse.jakarta.hello.infraestructure.persistence.bd.user.repository;
 
 import jakarta.enterprise.context.Dependent;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 
-import org.eclipse.jakarta.hello.model.User;
+import org.eclipse.jakarta.hello.infraestructure.persistence.bd.user.mapper.User;
 
 import java.util.List;
 

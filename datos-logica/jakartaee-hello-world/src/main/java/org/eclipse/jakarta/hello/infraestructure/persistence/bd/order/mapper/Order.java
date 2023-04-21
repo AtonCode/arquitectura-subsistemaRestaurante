@@ -1,11 +1,12 @@
-package org.eclipse.jakarta.hello.model;
+package org.eclipse.jakarta.hello.infraestructure.persistence.bd.order.mapper;
 
 import jakarta.persistence.*;
-import jakarta.ws.rs.core.Response;
+
+import java.io.Serializable;
 
 @Entity
 @Table(name = "orders")
-public class Order {
+public class Order implements Serializable {
 
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)

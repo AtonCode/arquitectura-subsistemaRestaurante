@@ -1,4 +1,4 @@
-package org.eclipse.jakarta.hello.resources;
+package org.eclipse.jakarta.hello.aplication.restService.order;
 
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
@@ -6,8 +6,8 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.Response;
-import org.eclipse.jakarta.hello.model.Order;
-import org.eclipse.jakarta.hello.repository.OrderRepository;
+import org.eclipse.jakarta.hello.infraestructure.persistence.bd.order.mapper.Order;
+import org.eclipse.jakarta.hello.infraestructure.persistence.bd.order.repository.OrderRepository;
 
 @Path("order")
 @Produces(MediaType.APPLICATION_JSON)

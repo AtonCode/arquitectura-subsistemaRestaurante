@@ -1,4 +1,4 @@
-POST http://10.0.1.108:8080/jakartaee-hello-world/rest/product/create
+POST http://localhost:8080/jakartaee-hello-world/rest/product/create
 Content-Type: application/json
 
 {
@@ -8,4 +8,7 @@ Content-Type: application/json
     "quantity": 1
 }
 ###
-GET http://10.0.1.108:8080/jakartaee-hello-world/rest/product/all
+GET http://localhost:8080/jakartaee-hello-world/rest/product/all
+
+###
+GET http://localhost:8080/jakartaee-hello-world/rest/product/1

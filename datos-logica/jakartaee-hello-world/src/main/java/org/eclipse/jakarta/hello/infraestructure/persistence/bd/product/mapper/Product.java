@@ -1,12 +1,13 @@
-package org.eclipse.jakarta.hello.model;
+package org.eclipse.jakarta.hello.infraestructure.persistence.bd.product.mapper;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.math.BigInteger;
 
 @Entity // This tells Hibernate to make a table out of this class
 @Table(name = "products")
-public class Product {
+public class Product implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")

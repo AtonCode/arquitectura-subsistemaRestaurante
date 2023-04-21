@@ -1,10 +1,14 @@
-package org.eclipse.jakarta.hello.model;
+package org.eclipse.jakarta.hello.infraestructure.persistence.bd.user.mapper;
 
 import jakarta.persistence.*;
+import org.eclipse.jakarta.hello.domain.entities.IUserImpl;
+
+import java.io.Serializable;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class UserMapperImpl extends IUserImpl implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -16,10 +20,10 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    public User() {
+    public UserMapperImpl() {
     }
 
-    public User(long id, String name, String email, String password) {
+    public UserMapperImpl(long id, String name, String email, String password) {
         this.id = id;
         this.name = name;
         this.email = email;

@@ -1,13 +1,13 @@
-package org.eclipse.jakarta.hello.resources;
+package org.eclipse.jakarta.hello.aplication.restService.user;
 
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 
 import jakarta.ws.rs.core.Response;
-import org.eclipse.jakarta.hello.model.User;
+import org.eclipse.jakarta.hello.infraestructure.persistence.bd.user.mapper.User;
 
-import org.eclipse.jakarta.hello.repository.UserRepository;
+import org.eclipse.jakarta.hello.infraestructure.persistence.bd.user.repository.UserRepository;
 
 @Path("user")
 @Produces(MediaType.APPLICATION_JSON)

@@ -1,4 +1,4 @@
-POST http://10.0.1.108:8080/jakartaee-hello-world/rest/user/create
+POST http://localhost:8080/jakartaee-hello-world/rest/user/create
 Content-Type: application/json
 
 {
@@ -8,4 +8,7 @@ Content-Type: application/json
 }
 
 ###
-GET http://10.0.1.108:8080/jakartaee-hello-world/rest/user/login/hello@atoncode.me/123456
+GET http://localhost:8080/jakartaee-hello-world/rest/user/login/hello@atoncode.me/123456
+
+###
+GET http://localhost:8080/jakartaee-hello-world/rest/user/all

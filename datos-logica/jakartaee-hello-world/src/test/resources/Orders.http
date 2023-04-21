@@ -1,4 +1,4 @@
-POST http://10.0.1.108:8080/jakartaee-hello-world/rest/order/create
+POST http://localhost:8080/jakartaee-hello-world/rest/order/create
 Content-Type: application/json
 
 {
@@ -9,8 +9,8 @@ Content-Type: application/json
 }
 
 ###
-GET http://10.0.1.108:8080/jakartaee-hello-world/rest/order/all
+GET http://localhost:8080/jakartaee-hello-world/rest/order/all
 
 ###
-GET http://10.0.1.108:8080/jakartaee-hello-world/rest/order/1
+GET http://localhost:8080/jakartaee-hello-world/rest/order/1
 

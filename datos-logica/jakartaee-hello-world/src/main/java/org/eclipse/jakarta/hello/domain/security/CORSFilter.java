@@ -1,4 +1,4 @@
-package org.eclipse.jakarta.hello.utils;
+package org.eclipse.jakarta.hello.domain.security;
 
 import java.io.IOException;
 
