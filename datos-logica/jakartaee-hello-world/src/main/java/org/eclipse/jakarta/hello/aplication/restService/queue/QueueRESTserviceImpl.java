@@ -1,4 +1,4 @@
-package org.eclipse.jakarta.hello.aplication.restService.product;
+package org.eclipse.jakarta.hello.aplication.restService.queue;
 
 import jakarta.enterprise.context.Dependent;
 import jakarta.inject.Inject;
@@ -6,25 +6,20 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import org.eclipse.jakarta.hello.domain.pattterns.dependencies.restService.IRESTservice;
-import org.eclipse.jakarta.hello.infraestructure.persistence.bd.product.repository.ProductJpaRepositoryImpl;
+import org.eclipse.jakarta.hello.infraestructure.persistence.bd.queue.repository.QueueJpaRepositoryImpl;
 
-@Path("product")
+@Path("queue")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 @Dependent
-public class ProductRESTserviceImpl<Product> implements IRESTservice<Product> {
-
+public class QueueRESTserviceImpl<Queue> implements IRESTservice<Queue> {
     @Inject
-    private ProductJpaRepositoryImpl productRepositoy;
+    private QueueJpaRepositoryImpl queueJpaRepositoryImpl;
 
-
-    // Create a new product using POST
     @POST
     @Path("create")
     @Override
-    public Response create(Product product) {
-        // Create the product
-        productRepositoy.create(product);
+    public Response create(Queue entity) {
         return Response
                 .status(200)
                 .header("Access-Control-Allow-Origin", "*")
@@ -32,17 +27,14 @@ public class ProductRESTserviceImpl<Product> implements IRESTservice<Product> {
                 .header("Access-Control-Allow-Credentials", "true")
                 .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
                 .header("Access-Control-Max-Age", "1209600")
-                .entity(productRepositoy.create(product)).build();
+                .entity(queueJpaRepositoryImpl.create(entity)).build();
+
     }
 
-
-    // Get all products
     @GET
     @Path("all")
     @Override
     public Response getAll() {
-
-        // Search for all products and return them
         return Response
                 .status(200)
                 .header("Access-Control-Allow-Origin", "*")
@@ -50,49 +42,43 @@ public class ProductRESTserviceImpl<Product> implements IRESTservice<Product> {
                 .header("Access-Control-Allow-Credentials", "true")
                 .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
                 .header("Access-Control-Max-Age", "1209600")
-                .entity(productRepositoy.listAll()).build();
+                .entity(queueJpaRepositoryImpl.listAll())
+                .build();
     }
-
-    // Get a product by id
     @GET
     @Path("{id}")
     @Override
-    public Response getObjectById(@PathParam("id") Long id) {
-        // Search for the product and return it
-        return  Response
+    public Response getObjectById(Long id) {
+        return Response
                 .status(200)
                 .header("Access-Control-Allow-Origin", "*")
                 .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
                 .header("Access-Control-Allow-Credentials", "true")
                 .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
                 .header("Access-Control-Max-Age", "1209600")
-                .entity(productRepositoy.findById(id)).build();
+                .entity(queueJpaRepositoryImpl.findById(id))
+                .build();
     }
-
-    // Update a product
     @PUT
     @Path("update")
     @Override
-    public Response update(Product product) {
-
-        productRepositoy.update(product);
-        // Update the product
-        return  Response
+    public Response update(Queue entity) {
+        queueJpaRepositoryImpl.update(entity);
+        return Response
                 .status(200)
                 .header("Access-Control-Allow-Origin", "*")
                 .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
                 .header("Access-Control-Allow-Credentials", "true")
                 .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
                 .header("Access-Control-Max-Age", "1209600")
-                .entity(product).build();
+                .entity(entity)
+                .build();
     }
     @DELETE
     @Path("delete/{id}")
     @Override
-    public Response delete(@PathParam("id") Long id) {
-        // Delete the product
-        productRepositoy.delete(productRepositoy.findById(id));
-
+    public Response delete(Long id) {
+        queueJpaRepositoryImpl.delete(queueJpaRepositoryImpl.findById(id));
         return Response
                 .status(200)
                 .header("Access-Control-Allow-Origin", "*")
@@ -102,22 +88,4 @@ public class ProductRESTserviceImpl<Product> implements IRESTservice<Product> {
                 .header("Access-Control-Max-Age", "1209600")
                 .build();
     }
-
-    // Delete a product
-    @DELETE
-    @Path("delete")
-    public Response delete(Product product) {
-
-        // Delete the product
-        productRepositoy.delete(product);
-        return Response
-                .status(200)
-                .header("Access-Control-Allow-Origin", "*")
-                .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
-                .header("Access-Control-Allow-Credentials", "true")
-                .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
-                .header("Access-Control-Max-Age", "1209600")
-                .entity(product).build();
-    }
-
 }
