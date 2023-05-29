@@ -46,7 +46,7 @@ public class QueueRESTserviceImpl<Queue> implements IRESTservice<Queue> {
                 .build();
     }
     @GET
-    @Path("{id}")
+    @Path("id={id}")
     @Override
     public Response getObjectById(Long id) {
         return Response
@@ -75,7 +75,7 @@ public class QueueRESTserviceImpl<Queue> implements IRESTservice<Queue> {
                 .build();
     }
     @DELETE
-    @Path("delete/{id}")
+    @Path("delete/id={id}")
     @Override
     public Response delete(Long id) {
         queueJpaRepositoryImpl.delete(queueJpaRepositoryImpl.findById(id));

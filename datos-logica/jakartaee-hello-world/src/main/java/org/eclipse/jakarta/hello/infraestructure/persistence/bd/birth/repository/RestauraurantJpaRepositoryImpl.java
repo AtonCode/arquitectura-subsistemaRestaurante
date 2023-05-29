@@ -12,7 +12,6 @@ import java.util.List;
 @Dependent
 public class RestauraurantJpaRepositoryImpl<Restaurant> extends IJpaRepository<Restaurant> {
 
-
     @Inject
     public RestauraurantJpaRepositoryImpl(EntityManager em) {
         super(em);

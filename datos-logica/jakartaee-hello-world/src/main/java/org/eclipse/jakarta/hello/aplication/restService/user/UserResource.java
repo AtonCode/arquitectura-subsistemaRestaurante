@@ -45,7 +45,7 @@ public class UserResource {
 
     // Get a user by id
     @GET
-    @Path("{id}")
+    @Path("id={id}")
     public Response getUserById(@PathParam("id") Long id) {
         // Search for the user and return it
         return Response
@@ -89,7 +89,7 @@ public class UserResource {
 
     // Delete a user
     @DELETE
-    @Path("delete/{id}")
+    @Path("delete/id={id}")
     public Response deleteUser(@PathParam("id") Long id) {
         // Delete the user
         userRepositoy.delete(id);

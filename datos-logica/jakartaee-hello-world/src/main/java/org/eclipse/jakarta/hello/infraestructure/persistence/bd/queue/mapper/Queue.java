@@ -2,10 +2,7 @@ package org.eclipse.jakarta.hello.infraestructure.persistence.bd.queue.mapper;
 
 
 import jakarta.persistence.*;
-import org.eclipse.jakarta.hello.infraestructure.persistence.bd.order.mapper.Order;
-
 import java.sql.Date;
-import java.util.HashMap;
 
 @Entity // This tells Hibernate to make a table out of this class
 @Table(name = "queue")

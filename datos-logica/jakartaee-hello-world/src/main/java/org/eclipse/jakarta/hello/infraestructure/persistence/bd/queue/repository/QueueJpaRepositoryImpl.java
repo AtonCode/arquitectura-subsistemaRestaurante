@@ -24,9 +24,8 @@ public class QueueJpaRepositoryImpl<Queue> extends IJpaRepository<Queue> {
         return object;
     }
 
-    @Override
-    public Queue read(Queue object) {
-        return em.find((Class<Queue>) object.getClass(), object);
+    public Queue read(Queue object, Long id) {
+        return (Queue) em.find(object.getClass(), id);
     }
 
     // Read

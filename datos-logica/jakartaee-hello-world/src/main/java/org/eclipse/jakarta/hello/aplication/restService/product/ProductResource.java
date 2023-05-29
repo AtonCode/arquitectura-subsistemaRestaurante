@@ -1,13 +1,18 @@
 package org.eclipse.jakarta.hello.aplication.restService.product;
 
+
+import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import org.eclipse.jakarta.hello.infraestructure.persistence.bd.product.mapper.Product;
+import org.eclipse.jakarta.hello.infraestructure.persistence.bd.product.repository.ProductJpaRepositoryImpl;
 
 @Path("product")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class ProductResource {
-    /*
+
     @Inject
     private ProductJpaRepositoryImpl productRepositoy;
 
@@ -49,7 +54,7 @@ public class ProductResource {
 
     // Get a product by id
     @GET
-    @Path("{id}")
+    @Path("id={id}")
     public Response getProductById(@PathParam("id") Long id) {
         // Search for the product and return it
         return  Response
@@ -81,10 +86,10 @@ public class ProductResource {
 
     // Delete a product
     @DELETE
-    @Path("delete/{id}")
+    @Path("delete/id={id}")
     public Response deleteProduct(@PathParam("id") Long id) {
 
-        productRepositoy.delete(id);
+        productRepositoy.delete(productRepositoy.findById(id));
         // Delete the product
         return Response
                 .status(200)
@@ -95,5 +100,5 @@ public class ProductResource {
                 .header("Access-Control-Max-Age", "1209600")
                 .entity(id).build();
     }
-    */
+
 }

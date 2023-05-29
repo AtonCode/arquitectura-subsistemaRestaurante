@@ -79,7 +79,7 @@ public class OrderResource {
 
     // Get an order by id
     @GET
-    @Path("{id}")
+    @Path("id={id}")
     public Response getOrderById(@PathParam("id") Long id) {
         // Search for the order and return it
 
@@ -127,7 +127,7 @@ public class OrderResource {
 
     //List all orders for a customer
     @GET
-    @Path("user/{id}")
+    @Path("user/id={id}")
     public Response getOrdersByUserId(@PathParam("id") Long id) {
 
         return Response
@@ -145,7 +145,7 @@ public class OrderResource {
 
     //List all orders active for a user
     @GET
-    @Path("user/{id}/approved")
+    @Path("user/id={id}/approved")
     public Response getApprovedOrdersByUserId(@PathParam("id") Long id) {
         // Search for all orders and return them
 
@@ -162,7 +162,7 @@ public class OrderResource {
 
     //List all orders pay for a user
     @GET
-    @Path("user/{id}/pay")
+    @Path("user/id={id}/pay")
     public Response getPayOrdersByUserId(@PathParam("id") Long id) {
         // Search for all orders and return them
 
@@ -177,7 +177,5 @@ public class OrderResource {
                         .toArray(Order[]::new)).build();
 
     }
-
-
 
 }
