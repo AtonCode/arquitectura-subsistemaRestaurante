@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 import java.math.BigInteger;
 
-@Entity // This tells Hibernate to make a table out of this class
+@Entity
 @Table(name = "products")
 public class Product implements Serializable {
     @Id
@@ -19,28 +19,28 @@ public class Product implements Serializable {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "price")
-    private BigInteger price;
+    @Column(name = "value")
+    private float value;
 
-    @Column(name = "quantity")
-    private BigInteger quantity;
+    @Column(name = "image")
+    private String image;
 
     public Product() {
     }
 
-    public Product(long id, String name, String description, BigInteger price, BigInteger quantity) {
+    public Product(Long id, String name, String description, float value, String image) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.price = price;
-        this.quantity = quantity;
+        this.value = value;
+        this.image = image;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -60,19 +60,19 @@ public class Product implements Serializable {
         this.description = description;
     }
 
-    public BigInteger getPrice() {
-        return price;
+    public float getValue() {
+        return value;
     }
 
-    public void setPrice(BigInteger price) {
-        this.price = price;
+    public void setValue(float value) {
+        this.value = value;
     }
 
-    public BigInteger getQuantity() {
-        return quantity;
+    public String getImage() {
+        return image;
     }
 
-    public void setQuantity(BigInteger quantity) {
-        this.quantity = quantity;
+    public void setImage(String image) {
+        this.image = image;
     }
 }

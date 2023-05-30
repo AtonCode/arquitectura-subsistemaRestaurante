@@ -1,8 +1,10 @@
 package org.eclipse.jakarta.hello.infraestructure.persistence.bd.order.mapper;
 
 import jakarta.persistence.*;
+import org.eclipse.jakarta.hello.infraestructure.persistence.bd.product.mapper.Product;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "orders")
@@ -11,68 +13,97 @@ public class Order implements Serializable {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long id;
+    private int id;
 
     @Column(name = "userId")
-    private Long userId;
+    private int userId;
 
-    @Column(name = "productId")
-    private Long productId;
+    @Column(name = "address")
+    private String address;
 
-    @Column(name = "quantity")
-    private int quantity;
+    @Column(name = "userName")
+    private String userName;
 
-    @Column(name = "paid")
-    private boolean paid;
+    @Column(name = "status")
+    private String status;
+
+    @ManyToMany
+    @JoinTable(
+            name = "products_orders",
+            joinColumns = @JoinColumn(name = "order_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id")
+    )
+    private List<Product> products;
+
+    @Column(name = "quantities")
+    private String quantities;
 
     public Order() {
     }
 
-    public Order(Long id, Long userId, Long productId, int quantity, boolean paid) {
+    public Order(int id, int userId, String address, String userName, String status, List<Product> products, String quantities) {
         this.id = id;
         this.userId = userId;
-        this.productId = productId;
-        this.quantity = quantity;
-        this.paid = paid;
+        this.address = address;
+        this.userName = userName;
+        this.status = status;
+        this.products = products;
+        this.quantities = quantities;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public Long getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 
-    public Long getProductId() {
-        return productId;
+    public String getAddress() {
+        return address;
     }
 
-    public void setProductId(Long productId) {
-        this.productId = productId;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public boolean isPaid() {
-        return paid;
+    public String getStatus() {
+        return status;
     }
 
-    public void setPaid(boolean paid) {
-        this.paid = paid;
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+
+    public String getQuantities() {
+        return quantities;
+    }
+
+    public void setQuantities(String quantities) {
+        this.quantities = quantities;
     }
 }

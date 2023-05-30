@@ -1,6 +1,7 @@
 package org.eclipse.jakarta.hello.aplication.restService.order;
 
 import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
@@ -20,6 +21,7 @@ public class OrderResource {
     // Create a new order using POST
     @POST
     @Path("create")
+    @Transactional
     public Response createOrder(Order order) {
 
         // Create the order
@@ -72,9 +74,7 @@ public class OrderResource {
                 .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
                 .header("Access-Control-Allow-Credentials", "true")
                 .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
-                .entity(orderRepository.listAll()
-                        .stream()
-                        .toArray(Order[]::new)).build();
+                .entity(orderRepository.listAll().toArray(Order[]::new)).build();
     }
 
     // Get an order by id
@@ -136,9 +136,7 @@ public class OrderResource {
                 .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
                 .header("Access-Control-Allow-Credentials", "true")
                 .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
-                .entity(orderRepository.readByUser(id)
-                        .stream()
-                        .toArray(Order[]::new)).build();
+                .entity(orderRepository.readByUser(id).toArray(Order[]::new)).build();
 
 
     }
@@ -155,9 +153,7 @@ public class OrderResource {
                 .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
                 .header("Access-Control-Allow-Credentials", "true")
                 .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
-                .entity(orderRepository.readApprovedByUser(id)
-                        .stream()
-                        .toArray(Order[]::new)).build();
+                .entity(orderRepository.readApprovedByUser(id).toArray(Order[]::new)).build();
     }
 
     //List all orders pay for a user
@@ -172,9 +168,7 @@ public class OrderResource {
                 .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
                 .header("Access-Control-Allow-Credentials", "true")
                 .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
-                .entity(orderRepository.readPayByUser(id)
-                        .stream()
-                        .toArray(Order[]::new)).build();
+                .entity(orderRepository.readPayByUser(id).toArray(Order[]::new)).build();
 
     }
 

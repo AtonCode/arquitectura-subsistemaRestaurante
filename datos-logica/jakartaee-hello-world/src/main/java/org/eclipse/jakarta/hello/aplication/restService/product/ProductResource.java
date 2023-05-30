@@ -21,7 +21,6 @@ public class ProductResource {
     @Path("create")
     public Response createProduct(Product product) {
         // Create the product
-        productRepositoy.create(product);
         return Response
                 .status(200)
                 .header("Access-Control-Allow-Origin", "*")
@@ -32,12 +31,10 @@ public class ProductResource {
                 .entity(productRepositoy.create(product)).build();
     }
 
-
     // Get all products
     @GET
     @Path("all")
     public Response getAllProducts() {
-
         // Search for all products and return them
         return Response
                 .status(200)
@@ -46,12 +43,8 @@ public class ProductResource {
                 .header("Access-Control-Allow-Credentials", "true")
                 .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
                 .header("Access-Control-Max-Age", "1209600")
-                .entity(productRepositoy.listAll()
-                        .stream()
-                        .toArray(Product[]::new)).build();
-
+                .entity(productRepositoy.listAll().toArray()).build();
     }
-
     // Get a product by id
     @GET
     @Path("id={id}")

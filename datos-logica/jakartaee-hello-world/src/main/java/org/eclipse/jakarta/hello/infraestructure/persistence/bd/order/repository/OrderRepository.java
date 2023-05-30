@@ -3,6 +3,7 @@ package org.eclipse.jakarta.hello.infraestructure.persistence.bd.order.repositor
 import jakarta.enterprise.context.Dependent;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 import org.eclipse.jakarta.hello.infraestructure.persistence.bd.order.mapper.Order;
 import java.util.List;
