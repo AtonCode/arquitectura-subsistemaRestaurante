@@ -1,12 +1,13 @@
 package org.eclipse.jakarta.hello.infraestructure.persistence.bd.user.mapper;
 
 import jakarta.persistence.*;
+import org.eclipse.jakarta.hello.domain.entities.IUserImpl;
 
 import java.io.Serializable;
 
 @Entity
 @Table(name = "users")
-public class User implements Serializable {
+public class User extends IUserImpl implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")

@@ -1,13 +1,14 @@
 package org.eclipse.jakarta.hello.infraestructure.persistence.bd.product.mapper;
 
 import jakarta.persistence.*;
+import org.eclipse.jakarta.hello.domain.entities.ProductImpl;
 
 import java.io.Serializable;
 import java.math.BigInteger;
 
 @Entity
 @Table(name = "products")
-public class Product implements Serializable {
+public class Product extends ProductImpl implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")

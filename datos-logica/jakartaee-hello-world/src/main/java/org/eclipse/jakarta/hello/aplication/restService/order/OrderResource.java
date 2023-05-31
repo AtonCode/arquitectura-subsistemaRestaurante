@@ -7,8 +7,13 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.Response;
+import org.eclipse.jakarta.hello.infraestructure.persistence.bd.ingrediet.mapper.Ingredient;
+import org.eclipse.jakarta.hello.infraestructure.persistence.bd.ingrediet.repository.IngredientJpaRepositoryImpl;
 import org.eclipse.jakarta.hello.infraestructure.persistence.bd.order.mapper.Order;
 import org.eclipse.jakarta.hello.infraestructure.persistence.bd.order.repository.OrderRepository;
+import org.eclipse.jakarta.hello.infraestructure.persistence.bd.product.mapper.Product;
+
+import java.util.List;
 
 @Path("order")
 @Produces(MediaType.APPLICATION_JSON)
@@ -17,6 +22,21 @@ public class OrderResource {
 
     @Inject
     private OrderRepository orderRepository;
+    @Inject
+    private IngredientJpaRepositoryImpl ingredientRepository;
+
+
+    @OPTIONS
+    @Path("{path : .*}")
+    public Response options() {
+        return Response.ok("")
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+                .header("Access-Control-Allow-Credentials", "true")
+                .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
+                .header("Access-Control-Max-Age", "1209600")
+                .build();
+    }
 
     // Create a new order using POST
     @POST
@@ -27,6 +47,17 @@ public class OrderResource {
         // Create the order
         if(orderRepository.create(order) != null){
             System.out.println("Test 1 Order created");
+
+            // Discount ingredients
+            for (Product product : order.getProducts()) {
+                 List<Ingredient> ingredients =  ingredientRepository.getIngredientsByProductId(product.getId());
+                    for (Ingredient ingredient : ingredients) {
+                        ingredient.setQuantity(ingredient.getQuantity() - 1);
+                        ingredientRepository.update(ingredient);
+                    }
+            }
+
+
             return Response.ok()
                     .header("Access-Control-Allow-Origin", "*")
                     .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
@@ -48,19 +79,6 @@ public class OrderResource {
         }
 
     }
-
-    @OPTIONS
-    @Path("{path : .*}")
-    public Response options() {
-        return Response.ok("")
-                .header("Access-Control-Allow-Origin", "*")
-                .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
-                .header("Access-Control-Allow-Credentials", "true")
-                .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
-                .header("Access-Control-Max-Age", "1209600")
-                .build();
-    }
-
 
     // Get all orders
     @GET

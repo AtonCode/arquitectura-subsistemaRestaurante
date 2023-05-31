@@ -1,6 +1,7 @@
 package org.eclipse.jakarta.hello.infraestructure.persistence.bd.order.mapper;
 
 import jakarta.persistence.*;
+import org.eclipse.jakarta.hello.domain.entities.OrderImpl;
 import org.eclipse.jakarta.hello.infraestructure.persistence.bd.product.mapper.Product;
 
 import java.io.Serializable;
@@ -8,7 +9,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "orders")
-public class Order implements Serializable {
+public class Order extends OrderImpl implements Serializable {
 
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
