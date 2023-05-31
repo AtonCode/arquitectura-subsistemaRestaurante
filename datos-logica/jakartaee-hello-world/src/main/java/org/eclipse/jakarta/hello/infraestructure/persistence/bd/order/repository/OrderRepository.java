@@ -37,26 +37,4 @@ public class OrderRepository {
         return em.createQuery("SELECT o FROM Order o", Order.class).getResultList();
     }
 
-
-    //Read all orders for a user
-    public List<Order> readByUser(Long userId) {
-        return em.createQuery("SELECT o FROM Order o WHERE o.userId = :userId", Order.class)
-                .setParameter("userId", userId)
-                .getResultList();
-    }
-
-    public List<Order> readPayByUser(Long id) {
-        return em.createQuery("SELECT o FROM Order o WHERE o.userId = :id AND o.isPaid = true", Order.class)
-                .setParameter("id", id)
-                .getResultList();
-
-    }
-
-    public List<Order> readApprovedByUser(Long id) {
-        return em.createQuery("SELECT o FROM Order o WHERE o.userId = :id AND o.isApproved = true", Order.class)
-                .setParameter("id", id)
-                .getResultList();
-
-    }
-
 }

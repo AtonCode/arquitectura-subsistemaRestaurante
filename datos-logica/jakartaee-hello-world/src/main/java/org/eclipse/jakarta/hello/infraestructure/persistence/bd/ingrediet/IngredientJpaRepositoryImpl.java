@@ -42,7 +42,4 @@ public class IngredientJpaRepositoryImpl<IngredientImpl> extends IJpaRepository<
     public List<IngredientImpl> listAll() {
         return (List<IngredientImpl>) em.createQuery("SELECT i FROM IngredientImpl i", org.eclipse.jakarta.hello.infraestructure.persistence.bd.ingrediet.IngredientImpl.class).getResultList();
     }
-
-
-
 }
